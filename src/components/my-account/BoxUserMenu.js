@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 // import BoxMenu from './BoxMenu';
 
 function BoxUserMenu() {
@@ -8,18 +9,19 @@ function BoxUserMenu() {
         <br />
         <br />
         {/* <BoxMenu /> */}
-        <div className="box-menu">
+        <NavLink to="/myaccount" className="box-menu">
           <i className="fas fa-user-circle"></i>
           <p>ข้อมูลของฉัน</p>
-        </div>
-        <div className="box-menu">
+        </NavLink>
+
+        <NavLink to="/myaccount/address" className="box-menu">
           <i className="fas fa-home"></i>
           <p>ที่อยู่ของฉัน</p>
-        </div>
-        <div className="box-menu">
+        </NavLink>
+        <NavLink to="/myaccount/myorder" className="box-menu">
           <i class="fas fa-archive"></i>
           <p>คำสั่งซื้อ</p>
-        </div>
+        </NavLink>
         <br />
         <br />
       </div>

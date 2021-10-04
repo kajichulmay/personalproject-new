@@ -1004,6 +1004,7 @@
   align-items: center;
   height: 70px;
   cursor: pointer;
+  text-decoration: none;
   /* outline: 2px dashed red; */
 }
 .box-menu:hover {
@@ -1134,9 +1135,6 @@
 .imgShop img {
   height: 100%;
 }
-.nameBook {
-  width: 20%;
-}
 .priceBookShop {
   /* width: 20%; */
   font-size: 15px;
@@ -1151,9 +1149,7 @@
 .btnCountBook * {
   font-size: 20px;
 }
-.sumPriceBook {
-  /* width: 20px; */
-}
+
 .boxShipping {
   margin-top: 30px;
   display: flex;
@@ -1184,4 +1180,36 @@
 }
 .btnBuy:hover {
   background: #ade9c0;
+}
+/* Address */
+
+.textAddress {
+  width: 600px;
+  height: 300px;
+}
+
+.btnClickCancle {
+  margin-top: 10px;
+}
+/* myorders */
+
+.tableOrder {
+  width: 100%;
+}
+.tableOrder td,
+.tableOrder th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.tableOrder th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #16c786;
+  color: white;
+}
+.tableOrder tr {
+  background-color: #d8d3cd;
+  color: #2c2c2c;
 }

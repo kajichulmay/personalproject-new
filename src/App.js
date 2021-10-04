@@ -19,6 +19,8 @@ import AddBookStock from './pages/AddBookStock';
 import EditBookStock from './pages/EditBookStock';
 import MyAccount from './pages/MyAccount';
 import ShoppingCart from './pages/ShoppingCart';
+import MyAddress from './pages/MyAddress';
+import CustomerOrder from './pages/CustomerOrder';
 function App() {
   return (
     <BrowserRouter>
@@ -28,6 +30,8 @@ function App() {
         <Content>
           <Switch>
             <Route exact path="/cart" component={ShoppingCart} />
+            <Route exact path="/myaccount/myorder" component={CustomerOrder} />
+            <Route exact path="/myaccount/address" component={MyAddress} />
             <Route exact path="/myaccount" component={MyAccount} />
             <Route exact path="/edit-book-stock" component={EditBookStock} />
             <Route exact path="/add-book-stock" component={AddBookStock} />

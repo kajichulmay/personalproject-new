@@ -22,7 +22,7 @@ function AddBookStock() {
           <input type="file" className="form-control" id="image" />
           <label htmlFor="imageCover">รูปภาพปก แบนเนอร์</label>
           <input type="file" className="form-control" id="imageCover" />
-          <label htmlFor="description">เรื่องย่อ</label>
+          <label htmlFor="description">ข้อมูลสินค้า</label>
           <textarea className="form-control"></textarea>
           <button type="button" class="btn btn-primary btn-lg btn-block btnSaveStock">
             Save Books Stock

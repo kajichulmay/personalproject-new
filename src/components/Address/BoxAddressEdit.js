@@ -1,15 +1,15 @@
 import React from 'react';
-import FormEditAccount from './FormEditAccount';
-import BoxAccount from './BoxAccount';
+import BoxAddress from './BoxAddress';
+import FormEditAddress from './FormEditAddress';
 
-function BoxUserEdit() {
+function BoxAddressEdit() {
   return (
     <div className="boxUserEdit">
       <div className="account-edit">
         <br />
         <br />
-        <BoxAccount />
-        <FormEditAccount />
+        <BoxAddress />
+        <FormEditAddress />
         <br />
         <br />
       </div>
@@ -17,4 +17,4 @@ function BoxUserEdit() {
   );
 }
 
-export default BoxUserEdit;
+export default BoxAddressEdit;

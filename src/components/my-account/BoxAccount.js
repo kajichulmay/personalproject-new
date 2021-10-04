@@ -3,6 +3,7 @@ import React from 'react';
 function BoxAccount() {
   return (
     <>
+      <p style={{ textAlign: 'center', width: '100%' }}>ข้อมูลส่วนตัว</p>
       <div className="box-edit">
         <span>ชื่อ :</span>
         <span className="valueName"></span>

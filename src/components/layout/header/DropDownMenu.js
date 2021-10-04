@@ -8,12 +8,12 @@ function DropDownMenu() {
         </NavLink>
       </div>
       <div className="line-menu">
-        <NavLink to="/myaccount" className="menudropdown">
+        <NavLink to="/myaccount/address" className="menudropdown">
           ที่อยู่ของฉัน
         </NavLink>
       </div>
       <div className="line-menu">
-        <NavLink to="/myaccount" className="menudropdown">
+        <NavLink to="/myaccount/myorder" className="menudropdown">
           คำสั่งซื้อ
         </NavLink>
       </div>

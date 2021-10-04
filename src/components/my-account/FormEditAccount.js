@@ -22,6 +22,11 @@ function FormEditAccount() {
           แก้ไขข้อมูลส่วนตัว
         </button>
       </div>
+      <div className="btnClickCancle">
+        <button type="button" class="btn btn-danger">
+          ยกเลิก
+        </button>
+      </div>
     </>
   );
 }
