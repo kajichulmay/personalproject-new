@@ -22,7 +22,7 @@ function MenuLogin() {
       <div className="cartBox">
         <NavLink to="/cart" className="cartMenu">
           <i className="bi bi-cart3"></i>
-          <span class="badge">3</span>
+          <span className="badge">3</span>
         </NavLink>
       </div>
     </div>

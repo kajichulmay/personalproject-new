@@ -21,35 +21,34 @@ import MyAccount from './pages/MyAccount';
 import ShoppingCart from './pages/ShoppingCart';
 import MyAddress from './pages/MyAddress';
 import CustomerOrder from './pages/CustomerOrder';
+import { AuthContextProvider } from './context/authContext';
 function App() {
   return (
-    <BrowserRouter>
-      <Main>
-        <Header />
-        <Menu />
-        <Content>
-          <Switch>
-            <Route exact path="/cart" component={ShoppingCart} />
-            <Route exact path="/myaccount/myorder" component={CustomerOrder} />
-            <Route exact path="/myaccount/address" component={MyAddress} />
-            <Route exact path="/myaccount" component={MyAccount} />
-            <Route exact path="/edit-book-stock" component={EditBookStock} />
-            <Route exact path="/add-book-stock" component={AddBookStock} />
-            <Route exact path="/update-stock" component={UpdateStock} />
-            <Route exact path="/notice-of-payment" component={NoticeOfPayment} />
-            <Route exact path="/book" component={Book} />
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/register" component={Register} />
-            <Route exact path="/how-to-buy" component={HowToBuy} />
-            <Route exact path="/light-novel" component={LightNovel} />
-            <Route exact path="/manga" component={Manga} />
-            <Route exact path="/all-series" component={AllSeries} />
-            <Route exact path="/" component={Home} />
-          </Switch>
-        </Content>
-        <Footer />
-      </Main>
-    </BrowserRouter>
+    <Main>
+      <Header />
+      <Menu />
+      <Content>
+        <Switch>
+          <Route exact path="/cart" component={ShoppingCart} />
+          <Route exact path="/myaccount/myorder" component={CustomerOrder} />
+          <Route exact path="/myaccount/address" component={MyAddress} />
+          <Route exact path="/myaccount" component={MyAccount} />
+          <Route exact path="/edit-book-stock" component={EditBookStock} />
+          <Route exact path="/add-book-stock" component={AddBookStock} />
+          <Route exact path="/update-stock" component={UpdateStock} />
+          <Route exact path="/notice-of-payment" component={NoticeOfPayment} />
+          <Route exact path="/book" component={Book} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/register" component={Register} />
+          <Route exact path="/how-to-buy" component={HowToBuy} />
+          <Route exact path="/light-novel" component={LightNovel} />
+          <Route exact path="/manga" component={Manga} />
+          <Route exact path="/all-series" component={AllSeries} />
+          <Route exact path="/" component={Home} />
+        </Switch>
+      </Content>
+      <Footer />
+    </Main>
   );
 }
 

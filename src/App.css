@@ -621,13 +621,12 @@
   margin-top: 60px;
 }
 .FromRegister {
-  height: 600px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 .formRegis {
-  height: 600px;
   display: flex;
   flex-direction: column;
   align-items: center;
