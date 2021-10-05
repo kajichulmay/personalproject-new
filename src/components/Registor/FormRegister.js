@@ -56,7 +56,7 @@ function FormRegister() {
           value={firstName}
           onChange={e => setFirstName(e.target.value)}
         />
-        {error.firstName ? <div className="invalid-feedback">{error.firstName}</div> : ''}
+        {error.errFirstName ? <div className="invalid-feedback">{error.errFirstName}</div> : ''}
         <input
           type="text"
           className={`inputlname ${error ? 'is-invalid' : ''}`}
@@ -64,7 +64,7 @@ function FormRegister() {
           value={lastName}
           onChange={e => setLastName(e.target.value)}
         />
-        {error.lastName ? <div className="invalid-feedback">{error.lastName}</div> : ''}
+        {error.errLastName ? <div className="invalid-feedback">{error.errLastName}</div> : ''}
         <input
           type="text"
           className={`inputUsername ${error ? 'is-invalid' : ''}`}
@@ -72,7 +72,7 @@ function FormRegister() {
           value={username}
           onChange={e => setusername(e.target.value)}
         />
-        {error.username ? <div className="invalid-feedback">{error.username}</div> : ''}
+        {error.errUsername ? <div className="invalid-feedback">{error.errUsername}</div> : ''}
         <input
           type="password"
           className={`inputPass ${error ? 'is-invalid' : ''}`}
@@ -80,7 +80,7 @@ function FormRegister() {
           value={password}
           onChange={e => setPassword(e.target.value)}
         />
-        {error.password ? <div className="invalid-feedback">{error.password}</div> : ''}
+        {error.errPassword ? <div className="invalid-feedback">{error.errPassword}</div> : ''}
         <input
           type="password"
           className={`inputConfirmPass ${error ? 'is-invalid' : ''}`}
@@ -88,7 +88,7 @@ function FormRegister() {
           value={confirmPassword}
           onChange={e => setConfirmPassword(e.target.value)}
         />
-        {error.confirmPassword ? <div className="invalid-feedback">{error.confirmPassword}</div> : ''}
+        {error.errConfirmPassword ? <div className="invalid-feedback">{error.errConfirmPassword}</div> : ''}
         <input
           type="email"
           className={`inputEmail ${error ? 'is-invalid' : ''}`}
@@ -96,7 +96,7 @@ function FormRegister() {
           value={email}
           onChange={e => setEmail(e.target.value)}
         />
-        {error.email ? <div className="invalid-feedback">{error.email}</div> : ''}
+        {error.errEmail ? <div className="invalid-feedback">{error.errEmail}</div> : ''}
         <button type="submit" className="btnRegister">
           Register
         </button>
