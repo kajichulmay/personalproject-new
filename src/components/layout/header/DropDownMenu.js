@@ -1,5 +1,9 @@
+import { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
+import { AuthContext } from '../../../context/authContext';
 function DropDownMenu() {
+  const { user, setUser } = useContext(AuthContext);
+  console.log(user);
   return (
     <div className="dropdown-menu">
       <div className="line-menu">
@@ -22,11 +26,13 @@ function DropDownMenu() {
           แจ้งชำระเงิน
         </NavLink>
       </div>
-      <div className="line-menu">
-        <NavLink to="/update-stock" className="menudropdown">
-          อัพเดทสินค้า
-        </NavLink>
-      </div>
+      {user.isAdmin && (
+        <div className="line-menu">
+          <NavLink to="/update-stock" className="menudropdown">
+            อัพเดทสินค้า
+          </NavLink>
+        </div>
+      )}
     </div>
   );
 }

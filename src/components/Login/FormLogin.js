@@ -8,36 +8,29 @@ import { useHistory } from 'react-router';
 function FormLogin() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState({
-    errorUsername: '',
-    errorPassword: '',
-  });
+  const [error, setError] = useState({});
   const { setUser } = useContext(AuthContext);
   const history = useHistory();
   const handleSubmitLogin = async e => {
+    e.preventDefault();
     try {
-      e.preventDefault();
-      if (username.trim() === '') {
-        setError(cur => ({ ...cur, errorUsername: 'username is require' }));
-      } else {
-        setError(cur => ({ ...cur, errorUsername: '' }));
+      const newError = {};
+      if (username.trim() === '') newError.errorUsername = 'username is require';
+      if (password.trim() === '') newError.errorPassword = 'password is require';
+      setError(newError);
+      console.log(newError);
+      if (Object.keys(error).length === 0) {
+        const res = await axios.post('http://localhost:9999/login', { username, password });
+        setToken(res.data.token);
+        setUser(jwtDecode(res.data.token));
+        history.push('/');
       }
-      if (password.trim() === '') {
-        setError(cur => ({ ...cur, errorPassword: 'password is require' }));
-      } else {
-        setError(cur => ({ ...cur, errorPassword: '' }));
-      }
-
-      const res = await axios.post('http://localhost:9999/login', { username, password });
-      setToken(res.data.token);
-      setUser(jwtDecode(res.data.token));
-      history.push('/');
     } catch (err) {
-      setError(cur => ({
-        ...cur,
+      setError({
+        ...err,
         errorPassword: 'username or password is invaild',
         errorUsername: 'username or password is invaild',
-      }));
+      });
     }
   };
   return (

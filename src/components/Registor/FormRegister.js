@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import TextTitle from '../Login/TextTitle';
 import axios from 'axios';
 import { useHistory } from 'react-router';
+import validator from 'validator';
 function FormRegister() {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -9,33 +10,30 @@ function FormRegister() {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [email, setEmail] = useState('');
-  const [error, setError] = useState({
-    errUsername: '',
-    errPassword: '',
-    errConfirmPassword: '',
-    errEmail: '',
-    errFirstName: '',
-    errLastName: '',
-  });
+  const [error, setError] = useState({});
+
   const history = useHistory();
   const handleSumbitRegister = async e => {
     try {
       e.preventDefault();
-      if (firstName.trim() === '') setError(current => ({ ...current, errFirstName: 'first name is require' }));
-      if (lastName.trim() === '') setError(current => ({ ...current, errLastName: 'last name is require' }));
-      if (username.trim() === '') setError(current => ({ ...current, errUsername: 'username is require' }));
-      if (email.trim() === '') setError(current => ({ ...current, errEmail: 'email is require' }));
-
-      const res = await axios.post('http://localhost:9999/register', {
-        username,
-        password,
-        confirmPassword,
-        email,
-        firstName,
-        lastName,
-      });
-      // history.push('/');
-      // console.log(res);
+      const newError = {};
+      if (firstName.trim() === '') newError.errFirstName = 'first name is require';
+      if (lastName.trim() === '') newError.errLastName = 'last name is require';
+      if (username.trim() === '') newError.errUsername = 'username is require';
+      if (email.trim() === '') newError.errEmail = 'email is require';
+      setError(newError);
+      if (Object.keys(error).length === 0) {
+        const res = await axios.post('http://localhost:9999/register', {
+          username,
+          password,
+          confirmPassword,
+          email,
+          firstName,
+          lastName,
+        });
+        history.push('/login');
+        // console.log(res);
+      }
     } catch (err) {
       setError({
         ...err,
@@ -97,9 +95,7 @@ function FormRegister() {
           onChange={e => setEmail(e.target.value)}
         />
         {error.errEmail ? <div className="invalid-feedback">{error.errEmail}</div> : ''}
-        <button type="submit" className="btnRegister">
-          Register
-        </button>
+        <button className="btnRegister">Register</button>
       </form>
     </div>
   );

@@ -1,20 +1,32 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { NavLink, useHistory } from 'react-router-dom';
+import { AuthContext } from '../../../context/authContext';
+import { removeToken } from '../../../service/localStorage';
 import DropDownMenu from './DropDownMenu';
 
 function MenuLogin() {
+  const { user, setUser } = useContext(AuthContext);
+  const history = useHistory();
+  const handleClickLogout = () => {
+    removeToken();
+    setUser(null);
+    history.push('/');
+  };
   return (
     <div className="menu-login">
       <div className="dropdown">
         <i className="bi bi-person-circle"></i>
-        <DropDownMenu />
+        {user && <DropDownMenu />}
       </div>
-      <NavLink to="/login" className="menuBlock" activeClassName="activeMenu">
-        Login
-      </NavLink>
-      {/* <NavLink to="/login" className="menuBlock" activeClassName="activeMenu">
-        Logout
-      </NavLink> */}
+      {user ? (
+        <div className="menuBlock" activeClassName="activeMenu" onClick={handleClickLogout}>
+          Logout
+        </div>
+      ) : (
+        <NavLink to="/login" className="menuBlock" activeClassName="activeMenu">
+          Login
+        </NavLink>
+      )}
       <span>OR</span>
       <NavLink to="/register" className="menuBlock" activeClassName="activeMenu">
         Register
