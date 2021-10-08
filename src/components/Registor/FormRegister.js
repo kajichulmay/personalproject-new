@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import TextTitle from '../Login/TextTitle';
-import axios from 'axios';
+import axios from '../../config/axios';
 import { useHistory } from 'react-router';
 import validator from 'validator';
 function FormRegister() {
@@ -21,9 +21,11 @@ function FormRegister() {
       if (lastName.trim() === '') newError.errLastName = 'last name is require';
       if (username.trim() === '') newError.errUsername = 'username is require';
       if (email.trim() === '') newError.errEmail = 'email is require';
+      if (password.length < 6) newError.errPassword = 'pasword more than 6 length';
       setError(newError);
-      if (Object.keys(error).length === 0) {
-        const res = await axios.post('http://localhost:9999/register', {
+
+      if (Object.keys(newError).length === 0) {
+        const res = await axios.post('/register', {
           username,
           password,
           confirmPassword,
@@ -32,7 +34,7 @@ function FormRegister() {
           lastName,
         });
         history.push('/login');
-        // console.log(res);
+        console.log(res);
       }
     } catch (err) {
       setError({
@@ -54,7 +56,7 @@ function FormRegister() {
           value={firstName}
           onChange={e => setFirstName(e.target.value)}
         />
-        {error.errFirstName ? <div className="invalid-feedback">{error.errFirstName}</div> : ''}
+        {error.errFirstName && <div className="invalid-feedback">{error.errFirstName}</div>}
         <input
           type="text"
           className={`inputlname ${error ? 'is-invalid' : ''}`}
@@ -62,7 +64,7 @@ function FormRegister() {
           value={lastName}
           onChange={e => setLastName(e.target.value)}
         />
-        {error.errLastName ? <div className="invalid-feedback">{error.errLastName}</div> : ''}
+        {error.errLastName && <div className="invalid-feedback">{error.errLastName}</div>}
         <input
           type="text"
           className={`inputUsername ${error ? 'is-invalid' : ''}`}
@@ -70,7 +72,7 @@ function FormRegister() {
           value={username}
           onChange={e => setusername(e.target.value)}
         />
-        {error.errUsername ? <div className="invalid-feedback">{error.errUsername}</div> : ''}
+        {error.errUsername && <div className="invalid-feedback">{error.errUsername}</div>}
         <input
           type="password"
           className={`inputPass ${error ? 'is-invalid' : ''}`}
@@ -78,7 +80,7 @@ function FormRegister() {
           value={password}
           onChange={e => setPassword(e.target.value)}
         />
-        {error.errPassword ? <div className="invalid-feedback">{error.errPassword}</div> : ''}
+        {error.errPassword && <div className="invalid-feedback">{error.errPassword}</div>}
         <input
           type="password"
           className={`inputConfirmPass ${error ? 'is-invalid' : ''}`}
@@ -86,7 +88,7 @@ function FormRegister() {
           value={confirmPassword}
           onChange={e => setConfirmPassword(e.target.value)}
         />
-        {error.errConfirmPassword ? <div className="invalid-feedback">{error.errConfirmPassword}</div> : ''}
+        {error.errConfirmPassword && <div className="invalid-feedback">{error.errConfirmPassword}</div>}
         <input
           type="email"
           className={`inputEmail ${error ? 'is-invalid' : ''}`}
@@ -94,7 +96,7 @@ function FormRegister() {
           value={email}
           onChange={e => setEmail(e.target.value)}
         />
-        {error.errEmail ? <div className="invalid-feedback">{error.errEmail}</div> : ''}
+        {error.errEmail && <div className="invalid-feedback">{error.errEmail}</div>}
         <button className="btnRegister">Register</button>
       </form>
     </div>

@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from '../../config/axios';
 import React, { useState, useContext } from 'react';
 import { AuthContext } from '../../context/authContext';
 import { setToken } from '../../service/localStorage';
@@ -18,9 +18,9 @@ function FormLogin() {
       if (username.trim() === '') newError.errorUsername = 'username is require';
       if (password.trim() === '') newError.errorPassword = 'password is require';
       setError(newError);
-      console.log(newError);
-      if (Object.keys(error).length === 0) {
-        const res = await axios.post('http://localhost:9999/login', { username, password });
+
+      if (Object.keys(newError).length === 0) {
+        const res = await axios.post('/login', { username, password });
         setToken(res.data.token);
         setUser(jwtDecode(res.data.token));
         history.push('/');
@@ -28,8 +28,8 @@ function FormLogin() {
     } catch (err) {
       setError({
         ...err,
-        errorPassword: 'username or password is invaild',
-        errorUsername: 'username or password is invaild',
+        errorPassword: err.response.data.errorPassword,
+        errorUsername: err.response.data.errorUsername,
       });
     }
   };

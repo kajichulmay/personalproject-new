@@ -7,7 +7,7 @@ function ShopContainer() {
       <div className="titleShopHead">
         <div className="textHead">
           <p>ตระกร้าสินค้า</p>
-          <i class="bi bi-x-square"></i>
+          <i className="bi bi-x-square"></i>
         </div>
       </div>
       <ShopList />

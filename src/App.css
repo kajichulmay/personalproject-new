@@ -24,16 +24,24 @@
   display: flex;
   justify-content: center;
   border-bottom: 1px solid #fffdf691;
+  /* outline: 2px dashed red; */
 }
 .menu-login {
+  /* width: 30%; */
+  /* outline: 2px dashed red; */
   cursor: pointer;
   display: flex;
   color: #fffdf6;
-  justify-content: flex-end;
   align-items: center;
 }
 .menu-login > * {
   margin-right: 20px;
+  width: 100%;
+  flex-grow: 1;
+  display: flex;
+}
+.menu-login > div {
+  width: 100%;
 }
 .dropdown {
   position: relative;
@@ -67,7 +75,17 @@
 .line-menu:hover {
   background-color: #d8d3cd;
 }
+.menuSayHi {
+  width: 100%;
+  display: flex;
+  cursor: default;
+}
+.menuSayHi > span {
+  padding-right: 5px;
+  /* outline: 2px dashed red; */
+}
 .menuBlock {
+  /* outline: 2px dashed red; */
   text-decoration: none;
   color: #fffdf6;
 }
@@ -939,7 +957,7 @@
 }
 .AddBookContent {
   margin-top: 50px;
-  width: 40%;
+  width: 50%;
   background: #fffdf6;
   border-radius: 8px;
   border: 1px solid #d9dadb;
@@ -950,12 +968,13 @@
   color: #797a7e;
   display: flex;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
   /* outline: 2px dashed red; */
 }
 .formAddStock {
-  width: 50%;
-  text-align: center;
+  width: 80%;
+  margin-top: 40px;
+  /* text-align: center; */
 }
 .btnSaveStock {
   margin-top: 30px;

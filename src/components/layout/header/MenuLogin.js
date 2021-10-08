@@ -19,18 +19,27 @@ function MenuLogin() {
         {user && <DropDownMenu />}
       </div>
       {user ? (
-        <div className="menuBlock" activeClassName="activeMenu" onClick={handleClickLogout}>
-          Logout
-        </div>
+        <>
+          <div className="menuSayHi">
+            <span>Welcome,</span>
+            <span>{user.username}</span>
+          </div>
+          <div className="menuBlock" onClick={handleClickLogout}>
+            Logout
+          </div>
+        </>
       ) : (
-        <NavLink to="/login" className="menuBlock" activeClassName="activeMenu">
-          Login
-        </NavLink>
+        <>
+          <NavLink to="/login" className="menuBlock" activeClassName="activeMenu">
+            Login
+          </NavLink>
+          <span>OR</span>
+          <NavLink to="/register" className="menuBlock" activeClassName="activeMenu">
+            Register
+          </NavLink>
+        </>
       )}
-      <span>OR</span>
-      <NavLink to="/register" className="menuBlock" activeClassName="activeMenu">
-        Register
-      </NavLink>
+
       <div className="cartBox">
         <NavLink to="/cart" className="cartMenu">
           <i className="bi bi-cart3"></i>

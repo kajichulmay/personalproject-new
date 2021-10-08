@@ -19,7 +19,7 @@ function BoxUserMenu() {
           <p>ที่อยู่ของฉัน</p>
         </NavLink>
         <NavLink to="/myaccount/myorder" className="box-menu">
-          <i class="fas fa-archive"></i>
+          <i className="fas fa-archive"></i>
           <p>คำสั่งซื้อ</p>
         </NavLink>
         <br />

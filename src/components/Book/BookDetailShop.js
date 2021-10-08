@@ -17,7 +17,7 @@ function BookDetailShop() {
         </div>
         <div className="buyBtnbooks">
           <a href="">
-            <div class="btnCartShop">
+            <div className="btnCartShop">
               <i className="bi bi-cart3"></i>
               <p>เพิ่ม</p>
               <p className="numberPrice">85</p>

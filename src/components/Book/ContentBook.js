@@ -2,12 +2,12 @@ import React from 'react';
 
 function ContentBook() {
   return (
-    <div class="contentBooks">
-      <div class="textIn">
-        <p class="headproduct">ข้อมูลสินค้า :</p>
-        <p class="nameBook">ดาบพิฆาตอสูร</p>
+    <div className="contentBooks">
+      <div className="textIn">
+        <p className="headproduct">ข้อมูลสินค้า :</p>
+        <p className="nameBook">ดาบพิฆาตอสูร</p>
         <p>เนื้อเรื่องย่อ </p>
-        <p class="storyBooks">
+        <p className="storyBooks">
           ทันจิโร่ เป็นเด็กหนุ่มผู้มีจิตใจอ่อนโยนและเฉลียวฉลาด ในฐานะลูกชายคนโตของครอบครัวคนเผาถ่าน
           <br />
           หัวเรี่ยวหัวแรงในการหารายได้เลี้ยงดูครอบครัวจากการเผาถ่านไปขายหลังจากพ่อของเขาเสียชีวิต

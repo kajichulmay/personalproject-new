@@ -3,7 +3,7 @@ import AllBank from './AllBank';
 import OnlinePayment from './OnlinePayment';
 function HowtoPayment() {
   return (
-    <div class="howPayment">
+    <div className="howPayment">
       <p>วิธีการชำระเงิน</p>
       <p className="titleTextPayment">ชำระเงินผ่านธนาคาร</p>
       <AllBank />

@@ -22,7 +22,7 @@ function ShopList() {
         <p>85 THB</p>
       </div>
       <div className="btnDelBook">
-        <i class="bi bi-x-square"></i>
+        <i className="bi bi-x-square"></i>
       </div>
     </div>
   );

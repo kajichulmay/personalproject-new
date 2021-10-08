@@ -1,32 +1,141 @@
-import React from 'react';
+import axios from '../config/axios';
+import { useState, useEffect } from 'react';
+import { useHistory } from 'react-router';
 
 function AddBookStock() {
+  const [input, setInput] = useState({
+    name: '',
+    volumn: '',
+    categoryId: '',
+    price: '',
+    amount: '',
+    imageUrl: '',
+    imageCoverUrl: '',
+    description: '',
+    status: true,
+  });
+  const { name, volumn, categoryId, price, amount, imageUrl, imageCoverUrl, description, status } = input;
+  const [showOptionCategory, setShowOptionCategory] = useState([]);
+  const [errorAddForm, setErrorAddForm] = useState({});
+
+  const history = useHistory();
+  useEffect(() => {
+    const fetchCategory = async () => {
+      try {
+        const res = await axios.get('/category');
+        const categories = res.data.category;
+        setShowOptionCategory(categories);
+      } catch (err) {
+        console.dir(err);
+      }
+    };
+    fetchCategory();
+  }, []);
+  const handleChangeInput = e => {
+    setInput(current => ({ ...current, [e.target.name]: e.target.value }));
+  };
+  // console.log(errorAddForm);
+  const handleChangeFile = e => {
+    setInput(current => ({ ...current, [e.target.name]: e.target.files[0] }));
+  };
+
+  const handleSubmitForm = async e => {
+    e.preventDefault();
+    try {
+      const formData = new FormData();
+      formData.append('name', name);
+      formData.append('volumn', volumn);
+      formData.append('price', price);
+      formData.append('amount', amount);
+      formData.append('categoryId', categoryId);
+      formData.append('picture', imageUrl);
+      formData.append('picture', imageCoverUrl);
+      formData.append('description', description);
+      formData.append('status', status);
+      const res = await axios.post('/add-book-stock', formData);
+      // console.log(res);
+      history.push('/update-stock');
+    } catch (err) {
+      setErrorAddForm({ ...err, errBack: err.response.data.message });
+    }
+  };
+
   return (
     <div className="AddBookStock">
       <div className="AddBookContent">
-        <form className="form-group formAddStock">
+        <form className="form-group formAddStock" onSubmit={handleSubmitForm}>
           <label htmlFor="name">ชื่อสินค้า</label>
-          <input type="text" className="form-control" id="name" />
+          <input
+            type="text"
+            className={`form-control ${errorAddForm.name ? 'is-invalid' : ''}`}
+            name="name"
+            onChange={handleChangeInput}
+            value={name}
+          />
+          {errorAddForm.name && <div className="invalid-feedback">{errorAddForm.name}</div>}
           <label htmlFor="volumn">เล่มที่</label>
-          <input type="text" className="form-control" id="volumn" />
-          <label htmlFor="category">Category</label>
-          <select className="form-select">
-            <option value="manga">Manga</option>
-            <option value="light-novel">LightNovel</option>
+          <input
+            type="text"
+            className={`form-control ${errorAddForm.volumn ? 'is-invalid' : ''}`}
+            name="volumn"
+            onChange={handleChangeInput}
+            value={volumn}
+          />
+          {errorAddForm.volumn && <div className="invalid-feedback">{errorAddForm.volumn}</div>}
+          <label htmlFor="category">ประเภทหนังสือ</label>
+          <select
+            className={`form-select ${errorAddForm ? 'is-invalid' : ''}`}
+            onChange={handleChangeInput}
+            name="categoryId"
+          >
+            <option selected disabled value="">
+              ...
+            </option>
+            {showOptionCategory.map(item => (
+              <option key={item.id} value={item.id}>
+                {item.name}
+              </option>
+            ))}
           </select>
+
           <label htmlFor="price">ราคา</label>
-          <input type="number" className="form-control" id="price" />
+          <input
+            type="number"
+            className={`form-control ${errorAddForm.price ? 'is-invalid' : ''}`}
+            name="price"
+            onChange={handleChangeInput}
+            value={price}
+          />
+          {errorAddForm.price && <div className="invalid-feedback">{errorAddForm.price}</div>}
           <label htmlFor="amount">จำนวนกี่เล่ม</label>
-          <input type="number" className="form-control" id="amount" />
-          <label htmlFor="image">รูปภาพปกหนังสือ</label>
-          <input type="file" className="form-control" id="image" />
+          <input
+            type="number"
+            className={`form-control ${errorAddForm.amount ? 'is-invalid' : ''}`}
+            name="amount"
+            onChange={handleChangeInput}
+            value={amount}
+          />
+          {errorAddForm.amount && <div className="invalid-feedback">{errorAddForm.amount}</div>}
+          <label htmlFor="imageUrl">รูปภาพปกหนังสือ</label>
+          <input
+            type="file"
+            className={`form-control ${errorAddForm.imageUrl ? 'is-invalid' : ''}`}
+            name="imageUrl"
+            onChange={handleChangeFile}
+          />
+          {errorAddForm.imageUrl && <div className="invalid-feedback">{errorAddForm.imageUrl}</div>}
           <label htmlFor="imageCover">รูปภาพปก แบนเนอร์</label>
-          <input type="file" className="form-control" id="imageCover" />
+          <input type="file" className={`form-control `} name="imageCoverUrl" onChange={handleChangeFile} />
           <label htmlFor="description">ข้อมูลสินค้า</label>
-          <textarea className="form-control"></textarea>
-          <button type="button" class="btn btn-primary btn-lg btn-block btnSaveStock">
-            Save Books Stock
-          </button>
+          <textarea
+            className={`form-control `}
+            onChange={handleChangeInput}
+            name="description"
+            value={description}
+          ></textarea>
+          <button className="btn btn-primary btn-lg btn-block btnSaveStock">Save Books Stock</button>
+
+          {errorAddForm.errBack && <div className="invalid-feedback">{errorAddForm.errBack}</div>}
           <br />
           <br />
         </form>
