@@ -1,6 +1,8 @@
-import React from 'react';
+function FormEditAddress({ setIsEdiiting }) {
+  const handleClickCancleEditAddress = () => {
+    setIsEdiiting(cur => !cur);
+  };
 
-function FormEditAddress() {
   return (
     <>
       <textarea className="textAddress"></textarea>
@@ -11,7 +13,7 @@ function FormEditAddress() {
           แก้ไขที่อยู่จัดส่ง
         </button>
       </div>
-      <div className="btnClickCancle">
+      <div className="btnClickCancle" onClick={handleClickCancleEditAddress}>
         <button type="button" class="btn btn-danger">
           ยกเลิก
         </button>

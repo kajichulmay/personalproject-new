@@ -32,7 +32,7 @@ const AuthContextProvider = ({ children }) => {
       }
     };
     fetchInfoAccount();
-  }, []);
+  }, [user]);
 
   return (
     <AuthContext.Provider value={{ user, setUser, bookTransaction, myAccountUser, setMyAccountUser }}>

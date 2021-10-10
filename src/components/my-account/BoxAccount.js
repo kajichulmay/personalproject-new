@@ -1,6 +1,6 @@
 function BoxAccount({ firstName, lastName, email, setIsEditing }) {
   const handleClickEditUser = () => {
-    setIsEditing(true);
+    setIsEditing(cur => !cur);
   };
   return (
     <>

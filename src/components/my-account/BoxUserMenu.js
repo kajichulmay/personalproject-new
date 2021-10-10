@@ -3,25 +3,28 @@ import { NavLink } from 'react-router-dom';
 import BoxMenu from './BoxMenu';
 
 function BoxUserMenu() {
+  const menuUser = [
+    {
+      to: '/myaccount',
+      name: 'ข้อมูลของฉัน',
+    },
+    {
+      to: '/myaccount/address',
+      name: 'ที่อยู่ของฉัน',
+    },
+    {
+      to: '/myaccount/myorder',
+      name: 'คำสั่งซื้อ',
+    },
+  ];
   return (
     <div className="boxUserMenu">
       <div className="accountMenu">
         <br />
         <br />
-        {/* <BoxMenu /> */}
-        <NavLink to="/myaccount" className="box-menu">
-          <i className="fas fa-user-circle"></i>
-          <p>ข้อมูลของฉัน</p>
-        </NavLink>
-
-        <NavLink to="/myaccount/address" className="box-menu">
-          <i className="fas fa-home"></i>
-          <p>ที่อยู่ของฉัน</p>
-        </NavLink>
-        <NavLink to="/myaccount/myorder" className="box-menu">
-          <i className="fas fa-archive"></i>
-          <p>คำสั่งซื้อ</p>
-        </NavLink>
+        {menuUser.map(item => (
+          <BoxMenu key={item.to} tolink={item.to} name={item.name} />
+        ))}
         <br />
         <br />
       </div>

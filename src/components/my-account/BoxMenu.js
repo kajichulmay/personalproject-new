@@ -1,11 +1,11 @@
 import React from 'react';
-
-function BoxMenu() {
+import { NavLink } from 'react-router-dom';
+function BoxMenu({ name, tolink }) {
   return (
-    <div className="box-menu">
+    <NavLink to={tolink} className="box-menu">
       <i className="fas fa-user-circle"></i>
-      <p>ข้อมูลของฉัน</p>
-    </div>
+      <p>{name}</p>
+    </NavLink>
   );
 }
 

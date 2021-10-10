@@ -2,7 +2,7 @@ import React from 'react';
 
 function FormEditAccount({ setIsEditing }) {
   const handleClickCancleEditUser = () => {
-    setIsEditing(false);
+    setIsEditing(cur => !cur);
   };
   return (
     <>
