@@ -1,18 +1,21 @@
 import React from 'react';
 
-function FormEditAccount() {
+function FormEditAccount({ setIsEditing }) {
+  const handleClickCancleEditUser = () => {
+    setIsEditing(false);
+  };
   return (
     <>
       <div className="box-edit">
-        <span>ชื่อ:</span>
+        <span>ชื่อ :</span>
         <input type="text" className="personalform"></input>
       </div>
       <div className="box-edit">
-        <span>นามสกุล:</span>
+        <span>นามสกุล :</span>
         <input type="text" className="personalform"></input>
       </div>
       <div className="box-edit">
-        <span>อีเมล์:</span>
+        <span>อีเมล์ :</span>
         <input type="email" className="personalform"></input>
       </div>
       <br />
@@ -22,7 +25,7 @@ function FormEditAccount() {
           แก้ไขข้อมูลส่วนตัว
         </button>
       </div>
-      <div className="btnClickCancle">
+      <div className="btnClickCancle" onClick={handleClickCancleEditUser}>
         <button type="button" class="btn btn-danger">
           ยกเลิก
         </button>

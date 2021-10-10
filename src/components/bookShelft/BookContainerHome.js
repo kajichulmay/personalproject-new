@@ -1,19 +1,20 @@
-import React from 'react';
 import { useContext } from 'react/cjs/react.development';
 import { AuthContext } from '../../context/authContext';
 import BookList from './BookList';
 
-function BookContainer() {
+function BookContainerHome() {
   const { bookTransaction } = useContext(AuthContext);
+
   const newBookTransaction = [...bookTransaction];
-  const filterBookLatest = newBookTransaction.sort((a, b) => b.id - a.id);
+  const filterBookNineLatest = newBookTransaction.sort((a, b) => b.id - a.id).splice(0, 9);
+
   return (
     <div className="bookContent">
-      {filterBookLatest.map(item => (
+      {filterBookNineLatest.map(item => (
         <BookList key={item.id} imageUrl={item.imageUrl} name={item.name} volumn={item.volumn} price={item.price} />
       ))}
     </div>
   );
 }
 
-export default BookContainer;
+export default BookContainerHome;

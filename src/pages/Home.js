@@ -1,6 +1,6 @@
 import React from 'react';
 import Banner from '../components/Banner/Banner';
-import BookContainer from '../components/bookShelft/BookContainer';
+import BookContainerHome from '../components/bookShelft/BookContainerHome';
 import SeemoreContainer from '../components/bookShelft/SeemoreContainer';
 
 function Home() {
@@ -9,7 +9,7 @@ function Home() {
       <Banner />
       <div className="bookShelft">
         <SeemoreContainer />
-        <BookContainer />
+        <BookContainerHome />
       </div>
     </div>
   );

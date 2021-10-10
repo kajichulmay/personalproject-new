@@ -2,18 +2,18 @@ import React from 'react';
 import { useContext } from 'react/cjs/react.development';
 import { AuthContext } from '../../context/authContext';
 import BookList from './BookList';
-
-function BookContainer() {
+function BookContainerLightNovel() {
   const { bookTransaction } = useContext(AuthContext);
   const newBookTransaction = [...bookTransaction];
-  const filterBookLatest = newBookTransaction.sort((a, b) => b.id - a.id);
+  const filterBookLatestLightNovel = newBookTransaction
+    .sort((a, b) => b.id - a.id)
+    .filter(item => item.categoryId === 2);
   return (
     <div className="bookContent">
-      {filterBookLatest.map(item => (
+      {filterBookLatestLightNovel.map(item => (
         <BookList key={item.id} imageUrl={item.imageUrl} name={item.name} volumn={item.volumn} price={item.price} />
       ))}
     </div>
   );
 }
-
-export default BookContainer;
+export default BookContainerLightNovel;

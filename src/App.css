@@ -317,7 +317,7 @@
 .bookContent {
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   flex-wrap: wrap;
 
   /* outline: 2px dashed red; */
@@ -326,7 +326,7 @@
   margin: 5px;
 }
 .bookContainer {
-  width: 370px;
+  width: 400px;
   height: 210px;
   border: 1px solid rgba(73, 73, 73, 0.33);
   border-radius: 10px;
@@ -386,7 +386,7 @@
   /* margin: 0 10px 0 10px; */
   font-style: normal;
   font-weight: normal;
-  font-size: 24px;
+  font-size: 22px;
   line-height: 32px;
   /* text-align: center; */
 }
@@ -910,6 +910,7 @@
 }
 .boxStock {
   width: 100%;
+  font-size: 18px;
   display: flex;
   justify-content: space-around;
   margin-top: 10px;
@@ -970,6 +971,9 @@
   justify-content: center;
   /* align-items: center; */
   /* outline: 2px dashed red; */
+}
+.AddBookContent textarea {
+  height: 200px;
 }
 .formAddStock {
   width: 80%;
@@ -1062,12 +1066,17 @@
 }
 .box-edit * {
   /* margin: 30px; */
-  /* margin-left: 20px; */
+  margin-left: 20px;
   font-size: 20px;
   font-style: normal;
   font-weight: 300;
   line-height: 35px;
   color: #596e79;
+}
+.valueName {
+  /* outline: 2px dashed red; */
+  width: 80%;
+  text-align: left;
 }
 .btnClickEdit {
   display: flex;

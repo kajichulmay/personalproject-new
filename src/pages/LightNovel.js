@@ -1,11 +1,12 @@
 import React from 'react';
-import BookContainer from '../components/bookShelft/BookContainer';
+
+import BookContainerLightNovel from '../components/bookShelft/BookContainerLightNovel';
 
 function LightNovel() {
   return (
     <div className="lightNovel">
       <div className="bookShelft">
-        <BookContainer />
+        <BookContainerLightNovel />
       </div>
     </div>
   );

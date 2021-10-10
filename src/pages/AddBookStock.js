@@ -53,10 +53,11 @@ function AddBookStock() {
       formData.append('description', description);
       formData.append('status', status);
       const res = await axios.post('/add-book-stock', formData);
-      // console.log(res);
+      console.log(res.data);
       history.push('/update-stock');
     } catch (err) {
-      setErrorAddForm({ ...err, errBack: err.response.data.message });
+      console.log(err);
+      // setErrorAddForm({ ...err, errBack: err.response.data.message });
     }
   };
 
@@ -84,7 +85,7 @@ function AddBookStock() {
           {errorAddForm.volumn && <div className="invalid-feedback">{errorAddForm.volumn}</div>}
           <label htmlFor="category">ประเภทหนังสือ</label>
           <select
-            className={`form-select ${errorAddForm ? 'is-invalid' : ''}`}
+            className={`form-select ${errorAddForm.categoryId ? 'is-invalid' : ''}`}
             onChange={handleChangeInput}
             name="categoryId"
           >
@@ -97,7 +98,7 @@ function AddBookStock() {
               </option>
             ))}
           </select>
-
+          {errorAddForm.categoryId && <div className="invalid-feedback">{errorAddForm.categoryId}</div>}
           <label htmlFor="price">ราคา</label>
           <input
             type="number"

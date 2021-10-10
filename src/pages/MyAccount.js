@@ -1,4 +1,3 @@
-import React from 'react';
 import BoxUserEdit from '../components/my-account/BoxUserEdit';
 import BoxUserMenu from '../components/my-account/BoxUserMenu';
 

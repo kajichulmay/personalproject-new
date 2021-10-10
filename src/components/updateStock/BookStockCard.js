@@ -1,15 +1,15 @@
 import { NavLink } from 'react-router-dom';
 import imgBookMock from '../../image/cover/onepice.png';
-function BookStockCard() {
+function BookStockCard({ imageUrl, name, categoryId, price, amount }) {
   return (
     <div className="boxStock">
       <div className="imgProduct">
-        <img src={imgBookMock} />
+        <img src={imageUrl} />
       </div>
-      <p>ดาบพิฆาตอสูร</p>
-      <p>Manga</p>
-      <p>85</p>
-      <p>200</p>
+      <p>{name}</p>
+      <p>{categoryId}</p>
+      <p>{price}</p>
+      <p>{amount}</p>
       <div className="buttonBlock">
         <button className="btn btn-link text-secondary">
           <i className="bi bi-x-circle btnDel"></i>
