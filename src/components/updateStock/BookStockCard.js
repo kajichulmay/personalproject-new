@@ -1,9 +1,9 @@
 import axios from '../../config/axios';
 import { useHistory } from 'react-router-dom';
 import { useContext } from 'react';
-import { AuthContext } from '../../context/authContext';
+import { CartContext } from '../../context/CartContext';
 function BookStockCard({ imageUrl, name, categoryId, price, amount, bookId }) {
-  const { bookTransaction, setBookTransaction } = useContext(AuthContext);
+  const { bookTransaction, setBookTransaction } = useContext(CartContext);
   const history = useHistory();
   const handleClickDelBook = async () => {
     try {

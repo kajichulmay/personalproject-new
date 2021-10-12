@@ -1,7 +1,7 @@
 import axios from '../config/axios';
 import { useState, useEffect, useContext } from 'react';
 import { useHistory } from 'react-router';
-import { AuthContext } from '../context/authContext';
+import { CartContext } from '../context/CartContext';
 
 function AddBookStock() {
   const [input, setInput] = useState({
@@ -18,7 +18,7 @@ function AddBookStock() {
   const { name, volumn, categoryId, price, amount, imageUrl, imageCoverUrl, description, status } = input;
   const [showOptionCategory, setShowOptionCategory] = useState([]);
   const [errorAddForm, setErrorAddForm] = useState({});
-  const { setToggleUpdateBook, toggleUpdateBook } = useContext(AuthContext);
+  const { setToggleUpdateBook, toggleUpdateBook } = useContext(CartContext);
 
   const history = useHistory();
   useEffect(() => {

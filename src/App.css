@@ -282,6 +282,7 @@
 }
 .slick-dots {
   color: black;
+  position: static;
 }
 .slick-prev:before,
 .slick-next:before {

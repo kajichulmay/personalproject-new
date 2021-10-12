@@ -1,6 +1,10 @@
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 
-function BookDetailShop({ oneBook, amount, setAmount, newPrice, handleClickMinusBook, handleClickPlusBook }) {
+import { CartContext } from '../../context/CartContext';
+
+function BookDetailShop({ oneBook }) {
+  const { handleClickAdd, amount } = useContext(CartContext);
+
   return (
     <div className="bookShop">
       <div className="insideBooks">
@@ -11,11 +15,9 @@ function BookDetailShop({ oneBook, amount, setAmount, newPrice, handleClickMinus
           <p className="currency">THB</p>
         </div>
         <div className="btnCount">
-          <button className="btnMinus" onClick={handleClickMinusBook}>
-            -
-          </button>
+          <button className="btnMinus">-</button>
           <div className="count">{amount}</div>
-          <button className="btnPlus" onClick={handleClickPlusBook}>
+          <button className="btnPlus" onClick={() => handleClickAdd(oneBook.id)}>
             +
           </button>
         </div>
@@ -24,7 +26,7 @@ function BookDetailShop({ oneBook, amount, setAmount, newPrice, handleClickMinus
             <div className="btnCartShop">
               <i className="bi bi-cart3"></i>
               <p>เพิ่ม</p>
-              <p className="numberPrice">{newPrice}</p>
+              <p className="numberPrice">{oneBook?.price}</p>
               <p className="currency">THB</p>
             </div>
           </a>

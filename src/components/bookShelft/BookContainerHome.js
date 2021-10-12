@@ -1,9 +1,10 @@
 import { useContext } from 'react/cjs/react.development';
 import { AuthContext } from '../../context/authContext';
+import { CartContext } from '../../context/CartContext';
 import BookList from './BookList';
 
 function BookContainerHome() {
-  const { bookTransaction } = useContext(AuthContext);
+  const { bookTransaction } = useContext(CartContext);
 
   const newBookTransaction = [...bookTransaction];
   const filterBookNineLatest = newBookTransaction.sort((a, b) => b.id - a.id).splice(0, 9);

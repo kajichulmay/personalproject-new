@@ -3,9 +3,10 @@ import { AuthContext } from '../../context/authContext';
 import BoxImgBanner from './BoxImgBanner';
 import Slider from 'react-slick';
 import PauseOnHover from './PauseOnHover';
+import { CartContext } from '../../context/CartContext';
 
 function Banner() {
-  const { bookTransaction } = useContext(AuthContext);
+  const { bookTransaction } = useContext(CartContext);
 
   const filterBookNew = [...bookTransaction]
     .sort((a, b) => b.id - a.id)
