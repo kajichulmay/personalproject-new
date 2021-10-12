@@ -47,7 +47,7 @@ const route = {
         component: Login,
       },
       {
-        path: '/book',
+        path: '/book/:bookId',
         component: Book,
       },
       {
@@ -63,7 +63,7 @@ const route = {
         component: AddBookStock,
       },
       {
-        path: '/edit-book-stock',
+        path: '/edit-book-stock/:bookId',
         component: EditBookStock,
       },
       {
@@ -116,7 +116,7 @@ const route = {
         component: Login,
       },
       {
-        path: '/book',
+        path: '/book/:bookId',
         component: Book,
       },
       {

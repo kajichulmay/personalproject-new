@@ -1,9 +1,9 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-function BoxMenu({ name, tolink }) {
+function BoxMenu({ name, tolink, classIcon }) {
   return (
     <NavLink to={tolink} className="box-menu">
-      <i className="fas fa-user-circle"></i>
+      <i className={classIcon}></i>
       <p>{name}</p>
     </NavLink>
   );

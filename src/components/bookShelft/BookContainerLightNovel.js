@@ -11,7 +11,14 @@ function BookContainerLightNovel() {
   return (
     <div className="bookContent">
       {filterBookLatestLightNovel.map(item => (
-        <BookList key={item.id} imageUrl={item.imageUrl} name={item.name} volumn={item.volumn} price={item.price} />
+        <BookList
+          key={item.id}
+          imageUrl={item.imageUrl}
+          name={item.name}
+          volumn={item.volumn}
+          price={item.price}
+          bookId={item.id}
+        />
       ))}
     </div>
   );

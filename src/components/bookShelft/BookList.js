@@ -1,18 +1,17 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
-import imgBookMock from '../../image/cover/onepice.png';
+import { NavLink, useHistory } from 'react-router-dom';
+
 import iconCart from '../../image/icon/cart_2.png';
-function BookList({ imageUrl, name, volumn, price }) {
+function BookList({ imageUrl, name, volumn, price, bookId }) {
+  const history = useHistory();
   return (
     <div className="bookContainer">
       <div className="imgBook">
-        <NavLink to="/book">
-          <img className="imgCover" src={imageUrl} />
-        </NavLink>
+        <img className="imgCover" src={imageUrl} onClick={() => history.push(`/book/${bookId}`)} />
       </div>
       <div className="text_inside">
-        <p className="nameBooks">
-          <NavLink to="/book">{name} </NavLink>
+        <p className="nameBooks" onClick={() => history.push(`/book/${bookId}`)}>
+          {name}
         </p>
         <p className="volumeBlock">เล่ม {volumn} </p>
         <div className="discount">

@@ -1,13 +1,20 @@
 import React from 'react';
-import imgbookMock from '../../image/cover/onepice.png';
+
 import BookDetailShop from './BookDetailShop';
-function BookDetail() {
+function BookDetail({ oneBook, amount, setAmount, newPrice, handleClickMinusBook, handleClickPlusBook }) {
   return (
     <div className="containerBookDetail">
       <div className="bookPic">
-        <img src={imgbookMock} />
+        <img src={oneBook?.imageUrl} />
       </div>
-      <BookDetailShop />
+      <BookDetailShop
+        oneBook={oneBook}
+        amount={amount}
+        setAmount={setAmount}
+        newPrice={newPrice}
+        handleClickMinusBook={handleClickMinusBook}
+        handleClickPlusBook={handleClickPlusBook}
+      />
     </div>
   );
 }

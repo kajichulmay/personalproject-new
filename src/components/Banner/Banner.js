@@ -1,18 +1,25 @@
-import React from 'react';
+import { useContext, Component } from 'react';
+import { AuthContext } from '../../context/authContext';
 import BoxImgBanner from './BoxImgBanner';
+import Slider from 'react-slick';
+import PauseOnHover from './PauseOnHover';
+
 function Banner() {
+  const { bookTransaction } = useContext(AuthContext);
+
+  const filterBookNew = [...bookTransaction]
+    .sort((a, b) => b.id - a.id)
+    .filter(item => item.imageCoverUrl)
+    .splice(0, 9);
+
   return (
     <div className="Banner">
       <div className="contents">
-        <BoxImgBanner />
-        <BoxImgBanner />
-        <BoxImgBanner />
-      </div>
-      <div className="slide left">
-        <span className="fas fa-chevron-circle-left"></span>
-      </div>
-      <div className="slide right">
-        <span className="fas fa-chevron-circle-right"></span>
+        <PauseOnHover>
+          {filterBookNew.map(item => (
+            <BoxImgBanner key={item.id} imageCoverUrl={item.imageCoverUrl} bookId={item.id} />
+          ))}
+        </PauseOnHover>
       </div>
     </div>
   );

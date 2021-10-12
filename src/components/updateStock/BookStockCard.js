@@ -1,6 +1,23 @@
-import { NavLink } from 'react-router-dom';
-import imgBookMock from '../../image/cover/onepice.png';
-function BookStockCard({ imageUrl, name, categoryId, price, amount }) {
+import axios from '../../config/axios';
+import { useHistory } from 'react-router-dom';
+import { useContext } from 'react';
+import { AuthContext } from '../../context/authContext';
+function BookStockCard({ imageUrl, name, categoryId, price, amount, bookId }) {
+  const { bookTransaction, setBookTransaction } = useContext(AuthContext);
+  const history = useHistory();
+  const handleClickDelBook = async () => {
+    try {
+      const idx = bookTransaction.findIndex(item => item.id === bookId);
+      const newBookTransaction = [...bookTransaction];
+      newBookTransaction.splice(idx, 1);
+      console.log(newBookTransaction);
+      setBookTransaction(newBookTransaction);
+      await axios.delete(`/update-stock/${bookId}`);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div className="boxStock">
       <div className="imgProduct">
@@ -11,13 +28,14 @@ function BookStockCard({ imageUrl, name, categoryId, price, amount }) {
       <p>{price}</p>
       <p>{amount}</p>
       <div className="buttonBlock">
-        <button className="btn btn-link text-secondary">
+        <button className="btn btn-link text-secondary" onClick={handleClickDelBook}>
           <i className="bi bi-x-circle btnDel"></i>
         </button>
-        <button className="btn btn-link text-secondary">
-          <NavLink to="/edit-book-stock" className="btnEdit">
-            <i className="bi bi-pencil-square"></i>
-          </NavLink>
+        <button
+          className="btn btn-link text-secondary btnEdit"
+          onClick={() => history.push(`/edit-book-stock/${bookId}`)}
+        >
+          <i className="bi bi-pencil-square"></i>
         </button>
       </div>
     </div>

@@ -1,6 +1,7 @@
 import axios from '../config/axios';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useHistory } from 'react-router';
+import { AuthContext } from '../context/authContext';
 
 function AddBookStock() {
   const [input, setInput] = useState({
@@ -17,6 +18,7 @@ function AddBookStock() {
   const { name, volumn, categoryId, price, amount, imageUrl, imageCoverUrl, description, status } = input;
   const [showOptionCategory, setShowOptionCategory] = useState([]);
   const [errorAddForm, setErrorAddForm] = useState({});
+  const { setToggleUpdateBook, toggleUpdateBook } = useContext(AuthContext);
 
   const history = useHistory();
   useEffect(() => {
@@ -53,7 +55,8 @@ function AddBookStock() {
       formData.append('description', description);
       formData.append('status', status);
       const res = await axios.post('/add-book-stock', formData);
-      console.log(res.data);
+      setToggleUpdateBook(cur => !cur);
+      // console.log(toggleUpdateBook);
       history.push('/update-stock');
     } catch (err) {
       console.log(err);
@@ -89,7 +92,7 @@ function AddBookStock() {
             onChange={handleChangeInput}
             name="categoryId"
           >
-            <option selected disabled value="">
+            <option selected disabled>
               ...
             </option>
             {showOptionCategory.map(item => (

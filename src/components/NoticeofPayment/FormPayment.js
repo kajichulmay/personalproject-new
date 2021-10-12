@@ -9,6 +9,11 @@ function FormPayment() {
         <NoticChooseBank />
         <NoticChooseBank />
         <NoticChooseBank />
+        <p>เลือกออเดอร์</p>
+        <select>
+          <option>orderId1</option>
+          <option>orderId2</option>
+        </select>
         <p>วันที่ชำระเงิน</p>
         <input type="date" />
         <p>หลักฐานการโอนเงิน</p>

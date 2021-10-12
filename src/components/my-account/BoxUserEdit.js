@@ -5,7 +5,7 @@ import { AuthContext } from '../../context/authContext';
 import { useState } from 'react/cjs/react.development';
 function BoxUserEdit() {
   const { myAccountUser, setMyAccountUser } = useContext(AuthContext);
-  const { firstName, lastName, email } = myAccountUser;
+  const { firstName, lastName, email, id } = myAccountUser;
   const [isEditing, setIsEditing] = useState(false);
   return (
     <div className="boxUserEdit">
@@ -14,7 +14,12 @@ function BoxUserEdit() {
         <br />
         <p style={{ textAlign: 'center', width: '100%' }}>ข้อมูลส่วนตัว</p>
         {isEditing ? (
-          <FormEditAccount setIsEditing={setIsEditing} />
+          <FormEditAccount
+            setIsEditing={setIsEditing}
+            setMyAccountUser={setMyAccountUser}
+            myAccountUser={myAccountUser}
+            userId={id}
+          />
         ) : (
           <BoxAccount firstName={firstName} lastName={lastName} email={email} setIsEditing={setIsEditing} />
         )}

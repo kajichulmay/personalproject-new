@@ -5,7 +5,7 @@ import { useContext } from 'react';
 import { AuthContext } from '../../context/authContext';
 import { useState } from 'react';
 function BoxAddressEdit() {
-  const { myAccountUser, setMyAccoutUser } = useContext(AuthContext);
+  const { myAccountUser, setMyAccountUser } = useContext(AuthContext);
   const { address } = myAccountUser;
   const [isEditting, setIsEdiiting] = useState(false);
   return (
@@ -15,7 +15,12 @@ function BoxAddressEdit() {
         <br />
         <p style={{ textAlign: 'center', width: '100%' }}>ที่อยู่</p>
         {isEditting ? (
-          <FormEditAddress setIsEdiiting={setIsEdiiting} />
+          <FormEditAddress
+            setIsEdiiting={setIsEdiiting}
+            myAccountUser={myAccountUser}
+            setMyAccountUser={setMyAccountUser}
+            userId={myAccountUser.id}
+          />
         ) : (
           <BoxAddress address={address} setIsEdiiting={setIsEdiiting} />
         )}

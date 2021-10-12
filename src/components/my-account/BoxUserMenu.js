@@ -7,14 +7,17 @@ function BoxUserMenu() {
     {
       to: '/myaccount',
       name: 'ข้อมูลของฉัน',
+      classIcon: 'fas fa-user-circle',
     },
     {
       to: '/myaccount/address',
       name: 'ที่อยู่ของฉัน',
+      classIcon: 'far fa-address-card',
     },
     {
       to: '/myaccount/myorder',
       name: 'คำสั่งซื้อ',
+      classIcon: 'fas fa-archive',
     },
   ];
   return (
@@ -23,7 +26,7 @@ function BoxUserMenu() {
         <br />
         <br />
         {menuUser.map(item => (
-          <BoxMenu key={item.to} tolink={item.to} name={item.name} />
+          <BoxMenu key={item.to} tolink={item.to} name={item.name} classIcon={item.classIcon} />
         ))}
         <br />
         <br />

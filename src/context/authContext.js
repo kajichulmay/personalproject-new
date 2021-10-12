@@ -6,7 +6,8 @@ const AuthContext = createContext();
 const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState(initialUser);
   const [bookTransaction, setBookTransaction] = useState([]);
-  const [myAccountUser, setMyAccountUser] = useState({});
+  const [myAccountUser, setMyAccountUser] = useState([]);
+  const [toggleUpdateBook, setToggleUpdateBook] = useState(true);
 
   useEffect(() => {
     const fetchAllBook = async () => {
@@ -19,7 +20,7 @@ const AuthContextProvider = ({ children }) => {
       }
     };
     fetchAllBook();
-  }, []);
+  }, [toggleUpdateBook]);
 
   useEffect(() => {
     const fetchInfoAccount = async () => {
@@ -35,7 +36,18 @@ const AuthContextProvider = ({ children }) => {
   }, [user]);
 
   return (
-    <AuthContext.Provider value={{ user, setUser, bookTransaction, myAccountUser, setMyAccountUser }}>
+    <AuthContext.Provider
+      value={{
+        user,
+        setUser,
+        bookTransaction,
+        setBookTransaction,
+        myAccountUser,
+        setMyAccountUser,
+        setToggleUpdateBook,
+        toggleUpdateBook,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );

@@ -10,7 +10,14 @@ function BookContainer() {
   return (
     <div className="bookContent">
       {filterBookLatest.map(item => (
-        <BookList key={item.id} imageUrl={item.imageUrl} name={item.name} volumn={item.volumn} price={item.price} />
+        <BookList
+          key={item.id}
+          imageUrl={item.imageUrl}
+          name={item.name}
+          volumn={item.volumn}
+          price={item.price}
+          bookId={item.id}
+        />
       ))}
     </div>
   );

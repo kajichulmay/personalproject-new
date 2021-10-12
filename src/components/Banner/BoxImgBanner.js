@@ -1,9 +1,10 @@
-import React from 'react';
-import imgBanner from '../../image/banner/banner1.jpg';
-function BoxImgBanner() {
+import { useHistory } from 'react-router';
+
+function BoxImgBanner({ imageCoverUrl, bookId }) {
+  const history = useHistory();
   return (
-    <div className="boxImgBanner">
-      <img src={imgBanner}></img>
+    <div className="boxImgBanner" onClick={() => history.push(`/book/${bookId}`)}>
+      <img className="imageBanner" src={imageCoverUrl}></img>
     </div>
   );
 }
