@@ -164,7 +164,27 @@
   color: white;
   font-size: 20px;
 }
-
+.BoxSearchDrowDown {
+  position: relative;
+  display: inline-block;
+}
+.DropDownSc {
+  display: none;
+  position: absolute;
+  background-color: #f7f2e7;
+  min-width: 400px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  color: #797a7e;
+  cursor: pointer;
+  /* border-bottom: 1px solid #797a7e; */
+}
+.show {
+  display: block;
+}
+.seachText {
+  margin: 10px;
+}
 /* Menu */
 .menuNavbar {
   /* background-color: #919191; */
@@ -807,8 +827,8 @@
   justify-content: center;
   align-items: center;
 }
-.buyBtnbooks a {
-  text-decoration: none;
+.buyBtnbooks {
+  cursor: pointer;
 }
 .btnCartShop {
   display: flex;
@@ -973,7 +993,9 @@
 }
 
 /* AddBookStock */
-
+.imagetext {
+  width: 300px;
+}
 .AddBookStock {
   display: flex;
   justify-content: center;
@@ -1067,12 +1089,12 @@
   /* outline: 2px dashed red; */
 }
 .boxUserEdit {
-  width: 50%;
+  width: 60%;
   margin-top: 50px;
   /* outline: 2px dashed red; */
 }
 .account-edit {
-  /* width: 890px; */
+  width: 900px;
   /* height: 550px; */
   background: #e3eee5;
   border-radius: 34px;
@@ -1171,6 +1193,7 @@
   justify-content: space-between;
 }
 .shopList {
+  width: 95%;
   display: flex;
   font-size: 15px;
   justify-content: space-between;
@@ -1178,6 +1201,9 @@
   margin: 30px;
   /* outline: 2px dashed red; */
   border-bottom: 1px solid #aeafaf;
+}
+.shopList > div {
+  width: 10%;
 }
 .imgShop {
   width: 10%;
@@ -1264,4 +1290,16 @@
 .tableOrder tr {
   background-color: #d8d3cd;
   color: #2c2c2c;
+}
+
+.boxNotice {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  /* outline: 2px dashed red; */
+}
+.table-Notice {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
 }

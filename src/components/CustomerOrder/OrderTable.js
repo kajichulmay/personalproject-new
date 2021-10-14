@@ -1,12 +1,15 @@
 import React from 'react';
 
-function OrderTable() {
+function OrderTable({ price, firstName, lastName, id, date, status }) {
+  // const newDate = new Date date.toLocaleDateString('en-US');
+
   return (
     <tr>
-      <td>#000id</td>
-      <td>13:51 14/9/2020</td>
-      <td> firstname , lastname</td>
-      <td>2000 sumPrice</td>
+      <td>#000{id}</td>
+      <td>{date.slice(0, 10)}</td>
+      <td> {`${firstName}  ${lastName}`}</td>
+      <td>{status ? 'จ่ายเงินเรียบร้อย' : 'รอการจ่ายเงิน'}</td>
+      <td>{price} Bath</td>
     </tr>
   );
 }

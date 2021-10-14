@@ -26,11 +26,18 @@ function DropDownMenu() {
         </NavLink>
       </div>
       {user?.isAdmin && (
-        <div className="line-menu">
-          <NavLink to="/update-stock" className="menudropdown">
-            อัพเดทสินค้า
-          </NavLink>
-        </div>
+        <>
+          <div className="line-menu">
+            <NavLink to="/update-stock" className="menudropdown">
+              อัพเดทสินค้า
+            </NavLink>
+          </div>
+          <div className="line-menu">
+            <NavLink to="/order-notice" className="menudropdown">
+              เช็คสถานะออเดอร์
+            </NavLink>
+          </div>
+        </>
       )}
     </div>
   );

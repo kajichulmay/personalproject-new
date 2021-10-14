@@ -15,6 +15,7 @@ import MyAddress from '../pages/MyAddress';
 import CustomerOrder from '../pages/CustomerOrder';
 import ShoppingCart from '../pages/ShoppingCart';
 import HowToBuy from '../pages/HowToBuy';
+import TableNotic from '../components/noticePayAdmin/TableNotic';
 const route = {
   admin: {
     route: [
@@ -81,6 +82,10 @@ const route = {
       {
         path: '/cart',
         component: ShoppingCart,
+      },
+      {
+        path: '/order-notice',
+        component: TableNotic,
       },
     ],
     redirect: '/',

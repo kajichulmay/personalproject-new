@@ -2,7 +2,8 @@ import React from 'react';
 import { useHistory, useParams } from 'react-router';
 import { useState, useEffect, useContext } from 'react/cjs/react.development';
 import axios from '../config/axios';
-import { AuthContext } from '../context/authContext';
+
+import { CartContext } from '../context/CartContext';
 function EditBookStock() {
   const [oneBook, setOneBook] = useState({});
   const [name, setName] = useState('');
@@ -17,7 +18,10 @@ function EditBookStock() {
   const params = useParams();
   const history = useHistory();
   const [showOptionCategory, setShowOptionCategory] = useState([]);
-  const { setToggleUpdateBook, toggleUpdateBook } = useContext(AuthContext);
+  const { setToggleUpdateBook, toggleUpdateBook } = useContext(CartContext);
+  const [showImageCover, setShowImageCover] = useState(null);
+  const [showImageBanner, setShowImageBanner] = useState(null);
+
   useEffect(() => {
     const fetchOneBook = async () => {
       const res = await axios.get(`/book/${params.bookId}`);
@@ -28,6 +32,8 @@ function EditBookStock() {
       setDescription(res.data.BookOne.description);
       setAmount(res.data.BookOne.amount);
       setVolumn(res.data.BookOne.volumn);
+      setImageUrl(res.data.BookOne.imageUrl);
+      setImageCoverUrl(res.data.BookOne.imageCoverUrl);
     };
     fetchOneBook();
     const fetchCategory = async () => {
@@ -41,6 +47,16 @@ function EditBookStock() {
     };
     fetchCategory();
   }, []);
+
+  const handleChangImageUrl = e => {
+    setImageUrl(e.target.files[0]);
+    setShowImageCover(URL.createObjectURL(e.target.files[0]));
+  };
+
+  const handleChangImageCover = e => {
+    setImageCoverUrl(e.target.files[0]);
+    setShowImageBanner(URL.createObjectURL(e.target.files[0]));
+  };
 
   const handleSubmitEditBook = async e => {
     try {
@@ -62,6 +78,7 @@ function EditBookStock() {
       console.log(err);
     }
   };
+
   return (
     <div className="AddBookStock">
       <div className="AddBookContent">
@@ -124,14 +141,26 @@ function EditBookStock() {
             onChange={e => setAmount(e.target.value)}
           />
           <label htmlFor="image">รูปภาพปกหนังสือ</label>
-          <input type="file" className="form-control" id="image" onChange={e => setImageUrl(e.target.files[0])} />
+          <input type="file" className="form-control" id="image" onChange={handleChangImageUrl} />
+
+          {showImageCover && (
+            <div>
+              <img className="imagetext" src={showImageCover} />
+              <br />
+              <br />
+            </div>
+          )}
           <label htmlFor="imageCover">รูปภาพปก แบนเนอร์</label>
-          <input
-            type="file"
-            className="form-control"
-            id="imageCover"
-            onChange={e => setImageCoverUrl(e.target.files[0])}
-          />
+          <input type="file" className="form-control" id="imageCover" onChange={handleChangImageCover} />
+
+          {showImageBanner && (
+            <div>
+              <img className="imagetext" src={showImageBanner} />
+              <br />
+              <br />
+            </div>
+          )}
+
           <label htmlFor="description">ข้อมูลสินค้า</label>
           <textarea
             className="form-control"

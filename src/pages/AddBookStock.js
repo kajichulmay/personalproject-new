@@ -2,7 +2,7 @@ import axios from '../config/axios';
 import { useState, useEffect, useContext } from 'react';
 import { useHistory } from 'react-router';
 import { CartContext } from '../context/CartContext';
-
+import Swal from 'sweetalert2';
 function AddBookStock() {
   const [input, setInput] = useState({
     name: '',
@@ -15,11 +15,14 @@ function AddBookStock() {
     description: '',
     status: true,
   });
-  const { name, volumn, categoryId, price, amount, imageUrl, imageCoverUrl, description, status } = input;
+  const [imageUrl, setImageUrl] = useState();
+  const [imageCoverUrl, setImageCoverUrl] = useState();
+  const { name, volumn, categoryId, price, amount, description, status } = input;
   const [showOptionCategory, setShowOptionCategory] = useState([]);
   const [errorAddForm, setErrorAddForm] = useState({});
   const { setToggleUpdateBook, toggleUpdateBook } = useContext(CartContext);
-
+  const [showImageCover, setShowImageCover] = useState(null);
+  const [showImageBanner, setShowImageBanner] = useState(null);
   const history = useHistory();
   useEffect(() => {
     const fetchCategory = async () => {
@@ -37,8 +40,13 @@ function AddBookStock() {
     setInput(current => ({ ...current, [e.target.name]: e.target.value }));
   };
   // console.log(errorAddForm);
-  const handleChangeFile = e => {
-    setInput(current => ({ ...current, [e.target.name]: e.target.files[0] }));
+  const handleChangeFileImageUrl = e => {
+    setImageUrl(e.target.files[0]);
+    setShowImageCover(URL.createObjectURL(e.target.files[0]));
+  };
+  const handleChangeFileImageBannerUrl = e => {
+    setImageCoverUrl(e.target.files[0]);
+    setShowImageBanner(URL.createObjectURL(e.target.files[0]));
   };
 
   const handleSubmitForm = async e => {
@@ -54,12 +62,12 @@ function AddBookStock() {
       formData.append('picture', imageCoverUrl);
       formData.append('description', description);
       formData.append('status', status);
+
       const res = await axios.post('/add-book-stock', formData);
       setToggleUpdateBook(cur => !cur);
-      // console.log(toggleUpdateBook);
       history.push('/update-stock');
     } catch (err) {
-      console.log(err);
+      console.dir(err);
       // setErrorAddForm({ ...err, errBack: err.response.data.message });
     }
   };
@@ -121,15 +129,36 @@ function AddBookStock() {
           />
           {errorAddForm.amount && <div className="invalid-feedback">{errorAddForm.amount}</div>}
           <label htmlFor="imageUrl">รูปภาพปกหนังสือ</label>
+          {showImageCover && (
+            <div>
+              <img className="imagetext" src={showImageCover} />
+              <br />
+              <br />
+            </div>
+          )}
+
           <input
             type="file"
             className={`form-control ${errorAddForm.imageUrl ? 'is-invalid' : ''}`}
             name="imageUrl"
-            onChange={handleChangeFile}
+            onChange={handleChangeFileImageUrl}
           />
           {errorAddForm.imageUrl && <div className="invalid-feedback">{errorAddForm.imageUrl}</div>}
           <label htmlFor="imageCover">รูปภาพปก แบนเนอร์</label>
-          <input type="file" className={`form-control `} name="imageCoverUrl" onChange={handleChangeFile} />
+          {showImageBanner && (
+            <div>
+              <img className="imagetext" src={showImageBanner} />
+              <br />
+              <br />
+            </div>
+          )}
+
+          <input
+            type="file"
+            className={`form-control `}
+            name="imageCoverUrl"
+            onChange={handleChangeFileImageBannerUrl}
+          />
           <label htmlFor="description">ข้อมูลสินค้า</label>
           <textarea
             className={`form-control `}

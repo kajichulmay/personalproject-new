@@ -5,11 +5,13 @@ import { setToken } from '../../service/localStorage';
 import TextTitle from './TextTitle';
 import jwtDecode from 'jwt-decode';
 import { useHistory } from 'react-router';
+import { CartContext } from '../../context/CartContext';
 function FormLogin() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState({});
   const { setUser } = useContext(AuthContext);
+  const { setToggleUpdateCart } = useContext(CartContext);
   const history = useHistory();
   const handleSubmitLogin = async e => {
     e.preventDefault();
@@ -24,6 +26,7 @@ function FormLogin() {
         setToken(res.data.token);
         setUser(jwtDecode(res.data.token));
         history.push('/');
+        setToggleUpdateCart(cur => !cur);
       }
     } catch (err) {
       setError({

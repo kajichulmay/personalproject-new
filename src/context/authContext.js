@@ -10,6 +10,7 @@ const AuthContextProvider = ({ children }) => {
 
   useEffect(() => {
     const fetchInfoAccount = async () => {
+      if (!user) return;
       try {
         const res = await axios.get('/myaccount');
 

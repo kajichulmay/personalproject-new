@@ -10,7 +10,7 @@ function BookStockCard({ imageUrl, name, categoryId, price, amount, bookId }) {
       const idx = bookTransaction.findIndex(item => item.id === bookId);
       const newBookTransaction = [...bookTransaction];
       newBookTransaction.splice(idx, 1);
-      console.log(newBookTransaction);
+      // console.log(newBookTransaction);
       setBookTransaction(newBookTransaction);
       await axios.delete(`/update-stock/${bookId}`);
     } catch (err) {

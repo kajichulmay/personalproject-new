@@ -1,6 +1,26 @@
-import React from 'react';
+import axios from '../../config/axios';
+import React, { useState } from 'react';
+import { useHistory } from 'react-router';
+import { useContext } from 'react/cjs/react.development';
+import { CartContext } from '../../context/CartContext';
+
+import SumPriceCart from './SumPriceCart';
 
 function BoxSummary() {
+  const { cartItem, setToggleUpdateCart } = useContext(CartContext);
+  const history = useHistory();
+  const [sumPriceAllCart, setSumPriceAllCart] = useState();
+
+  const handleClickBuyBook = async () => {
+    try {
+      const createOrder = await axios.post('/order', { sumPrice: sumPriceAllCart });
+      setToggleUpdateCart(cur => !cur);
+      history.push('/notice-of-payment');
+    } catch (err) {
+      console.dir(err);
+    }
+  };
+
   return (
     <div className="shopBox">
       <div className="titleShopHead">
@@ -8,15 +28,8 @@ function BoxSummary() {
           <p>สรุปคำสั่งซื้อ</p>
         </div>
       </div>
-      <div className="boxShipping">
-        <span>ค่าจัดส่ง</span>
-        <span>30</span>
-      </div>
-      <div className="boxSumprice">
-        <span>ราคาสุทธิ</span>
-        <span>115</span>
-      </div>
-      <div className="boxSubmitPrice">
+      <SumPriceCart setSumPriceAllCart={setSumPriceAllCart} sumPriceAllCart={sumPriceAllCart} />
+      <div className="boxSubmitPrice" onClick={handleClickBuyBook}>
         <button className="btnBuy">สั่งซื้อ</button>
       </div>
     </div>

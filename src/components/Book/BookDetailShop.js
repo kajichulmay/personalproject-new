@@ -1,9 +1,13 @@
-import { useContext, useEffect } from 'react';
-
-import { CartContext } from '../../context/CartContext';
-
-function BookDetailShop({ oneBook }) {
-  const { handleClickAdd, amount } = useContext(CartContext);
+function BookDetailShop({
+  oneBook,
+  handleClickAdd,
+  amount,
+  handleClickDel,
+  setSumPrice,
+  sumPrice,
+  handleClickSubmitBuy,
+}) {
+  setSumPrice(oneBook.price * amount);
 
   return (
     <div className="bookShop">
@@ -15,21 +19,21 @@ function BookDetailShop({ oneBook }) {
           <p className="currency">THB</p>
         </div>
         <div className="btnCount">
-          <button className="btnMinus">-</button>
+          <button className="btnMinus" onClick={handleClickDel}>
+            -
+          </button>
           <div className="count">{amount}</div>
-          <button className="btnPlus" onClick={() => handleClickAdd(oneBook.id)}>
+          <button className="btnPlus" onClick={handleClickAdd}>
             +
           </button>
         </div>
-        <div className="buyBtnbooks">
-          <a href="">
-            <div className="btnCartShop">
-              <i className="bi bi-cart3"></i>
-              <p>เพิ่ม</p>
-              <p className="numberPrice">{oneBook?.price}</p>
-              <p className="currency">THB</p>
-            </div>
-          </a>
+        <div className="buyBtnbooks" onClick={handleClickSubmitBuy}>
+          <div className="btnCartShop">
+            <i className="bi bi-cart3"></i>
+            <p>เพิ่ม</p>
+            <p className="numberPrice">{sumPrice}</p>
+            <p className="currency">THB</p>
+          </div>
         </div>
       </div>
     </div>
